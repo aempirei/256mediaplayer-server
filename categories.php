@@ -12,6 +12,9 @@ if($realtime) {
 header('Content-Type: application/xml');
 echo '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'."\n";
 
+$videos = file_get_lines('./data/videos.txt');
+$videoSz = sizeof($videos);
+
 ?>
 <categories>
 
@@ -20,7 +23,7 @@ echo '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'."\n";
 
 <? else: ?>
 
-	<category title="Videos" description="HellaNZB Videos" sd_img="" hd_img="">
+	<category title="Videos" description="<?= $videoSz ?> videos found" sd_img="" hd_img="">
 <?
 
 	$dates = file_get_lines('./data/dates.txt');
