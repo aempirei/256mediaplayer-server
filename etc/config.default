@@ -1,0 +1,11 @@
+#
+# path to media content
+#
+
+contentdir=
+
+#
+# full path to this 256mediaplayer-server
+#
+
+webdir=

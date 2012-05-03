@@ -1,0 +1,21 @@
+256mediaplayer-server
+256.bz Media Player Server for 256.bz Media Player Channel on Roku 2
+Copyright(c) 2012 by Christopher Abad | 20 GOTO 10
+email: aempirei@gmail.com aempirei@256.bz
+http://www.256.bz/ http://www.twentygoto10.com/
+https://github.com/aempirei/256mediaplayer-server/
+aim: ambientempire
+
+copy over and then edit the config.php and config files from the defaults in the ./etc/ directory
+
+make sure the ./data/ directory is writeable by the httpd user
+
+update your host url at http://rokuurlhost.256.bz
+
+you should be able to browse to http://rokuurlhost.256.bz/redirect.php and it should then redirect you to your categories.php
+
+this should give you url XML feed. if it does this, then everything is working correctly.
+
+install the 256mediaplayer roku application via https://owner.roku.com/add/256bzmediaplayer
+
+that should be it.

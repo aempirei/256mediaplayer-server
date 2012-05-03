@@ -1,0 +1,17 @@
+<?
+
+error_reporting(E_ALL);
+
+// base url for media content.
+// this url should coincide with $contentdir from
+// ./config but as an http url from your webserver
+
+$baseUrl = 'http://www.yourdomain.com/path/to/content';
+
+// realtime video list generation.
+// if you have a lot of video content and update-hq-video.sh
+// causes the categories.php to take a long time to generate
+// you can set this to false, and then have update-hq-video.sh
+// run from yours or httpd users crontab every once in a while
+
+$realtime = true;
