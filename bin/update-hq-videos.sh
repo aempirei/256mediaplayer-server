@@ -19,10 +19,16 @@ types=( mkv m4v mp4 )
 typere=${types[*]}
 typere=${typere// /\\|}
 
-find "$contentdir/" -type f | sed "s=^$contentdir/\(.*\)=\1=" | grep "\($typere\)$" | while read filename; do
-	d=`stat -c "%y" "$contentdir/$filename" | cut -f1 -d' '`
-	echo "$d,$filename"
+find "$contentdir/" -type f \
+	| sed "s=^$contentdir/\(.*\)=\1=" \
+	| grep "\($typere\)$" \
+	| grep -v '\bsample\.[^.]*$' \
+	| grep -v '/sample-' \
+	| while read filename; do
+		d=`stat -c "%y" "$contentdir/$filename" | cut -f1 -d' '`
+		echo "$d,$filename"
 done > "$videofile"
+
 cat "$videofile" | cut -f1 -d',' | sort | uniq > "$datefile"
 echo ${types[*]} | tr " " "\n" > "$typefile"
 true
