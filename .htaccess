@@ -1,8 +1,0 @@
-order deny,allow
-deny from all
-allow from 192.168.1.0/24
-allow from 127.0.0.1/8
-allow from 2001:470:1f05:434::/64
-allow from 2001:470:1f07:290::/64
-allow from 75.0.0.0/19
-allow from 75.141.192.0/18
