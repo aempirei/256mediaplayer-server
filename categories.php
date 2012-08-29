@@ -23,17 +23,29 @@ $videoSz = sizeof($videos);
 
 <? else: ?>
 
-	<category title="Videos" description="<?= $videoSz ?> videos found" sd_img="" hd_img="">
+	<category title="Videos by Download Date" description="<?= $videoSz ?> videos found" sd_img="" hd_img="">
 <?
-
 	$dates = file_get_lines('./data/dates.txt');
 	rsort($dates);
-	echo "<categoryLeaf title='All' description='All Videos' feed='http://roku.256.bz/videos.php' />\n";
 	foreach($dates as $date) {
-		echo "<categoryLeaf title='$date' description='Videos Created on $date' feed='http://roku.256.bz/videos.php?date=$date' />\n";
+		echo "<categoryLeaf title='$date' description='Videos from $date' feed='http://roku.256.bz/videos.php?date=$date' />\n";
 	}
 ?>
 	</category>
+
+	<category title="Videos by First Character" description="<?= $videoSz ?> videos found" sd_img="" hd_img="">
+<?
+	$chars = file_get_lines('./data/chars.txt');
+	foreach($chars as $char) {
+		echo "<categoryLeaf title='$char' description='Videos beginning with $char' feed='http://roku.256.bz/videos.php?char=$char' />\n";
+	}
+?>
+	</category>
+
+	<category title="All Playable Videos" description="<?= $videoSz ?> videos found" sd_img="" hd_img="">
+		<categoryLeaf title='All' description='All Videos' feed='http://roku.256.bz/videos.php' />
+	</category>
+
 <? endif ?>
 
  </categories>

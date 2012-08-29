@@ -54,9 +54,10 @@ function feed_item($filename) {
 }
 
 $datere = isset($_GET['date']) ? $_GET['date'] : '....-..-..';
+$charre = isset($_GET['char']) ? $_GET['char'] : '.';
 
 $files = file_get_lines('./data/videos.txt');
-$files = array_values(preg_filter('/^'.$datere.',/', '', $files));
+$files = array_values(preg_filter('/^'.$datere.','.$charre.'/i', '', $files));
 
 sort($files);
 

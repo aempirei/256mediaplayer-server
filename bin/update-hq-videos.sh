@@ -15,6 +15,7 @@ datadir="$webdir/data"
 videofile="$datadir/videos.txt"
 datefile="$datadir/dates.txt"
 typefile="$datadir/types.txt"
+charsfile="$datadir/chars.txt"
 types=( mkv m4v mp4 )
 typere=${types[*]}
 typere=${typere// /\\|}
@@ -25,10 +26,19 @@ find "$contentdir/" -type f \
 	| grep -v '\bsample\.[^.]*$' \
 	| grep -v '/sample-' \
 	| while read filename; do
-		d=`stat -c "%y" "$contentdir/$filename" | cut -f1 -d' '`
+		# try to get an accurate download date
+		format="%y"
+		filedir=`dirname "$filename"`
+		if [ "$filedir" != "." ] && [ "$filedir" != ".." ] && [ -d "$contentdir/$filedir" ]; then
+			filepath="$contentdir/$filedir"
+		else
+			filepath="$contentdir/$filename"
+		fi
+		d=`stat -c "$format" "$filepath" | cut -f1 -d' '`
 		echo "$d,$filename"
 done > "$videofile"
 
 cat "$videofile" | cut -f1 -d',' | sort | uniq > "$datefile"
+cat "$videofile" | cut -f2 -d',' | sed 's/\s//g' | tr 'a-z' 'A-Z' | cut -c1 | sort | uniq > "$charsfile"
 echo ${types[*]} | tr " " "\n" > "$typefile"
 true
