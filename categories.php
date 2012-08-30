@@ -37,7 +37,9 @@ $videoSz = sizeof($videos);
 <?
 	$chars = file_get_lines('./data/chars.txt');
 	foreach($chars as $char) {
-		echo "<categoryLeaf title='$char' description='Videos beginning with $char' feed='http://roku.256.bz/videos.php?char=$char' />\n";
+		$htmlchar = htmlspecialchars($char);
+		$urlchar = htmlspecialchars($char);
+		echo "<categoryLeaf title='$htmlchar' description='Videos beginning with $htmlchar' feed='http://roku.256.bz/videos.php?char=$urlchar' />\n";
 	}
 ?>
 	</category>

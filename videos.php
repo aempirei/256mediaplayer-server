@@ -3,8 +3,9 @@
 require_once('./etc/config.php');
 require_once('./lib/library.php');
 
-function feed_item_string($sdimg, $hdimg, $title, $id, $type, $q, $fmt, $br, $url, $synopsis, $genre, $runtime) {
+// TODO: add image from image file if there is one that matches its regex
 
+function feed_item_string($sdimg, $hdimg, $title, $id, $type, $q, $fmt, $br, $url, $synopsis, $genre, $runtime) {
 	return
 		"<item sdImg=\"$sdimg\" hdImg=\"$hdimg\">\n".
 		"\t<title>".htmlspecialchars($title)."</title>\n".
@@ -43,12 +44,16 @@ function feed_item($filename) {
 	$title = preg_replace('/\.'.$format.'$/', '', $filename);
 
 	$title = preg_replace('/\s+/', ' ', $title);
-	$title = preg_replace('/^\s*\d{0,2}\s*-?\s*/', '', $title);
+	$title = preg_replace('/^\s*\d{0,2}(?:\s*[-).]\s*|\s+)/', '', $title);
 	$title = preg_replace('/\s+$/', '', $title);
 
 	$synopsis = str_replace(' ', '·', $baseUrl.'/'.$filename);
 
-	$url = str_replace(' ', '%20', $baseUrl.'/'.$filename);
+	// this may be unintuitive, but this is not part of an xml tag attribute,
+	// so the url probably isn't supposed to be uri encoded but rather
+	// probably is supposed to be html-entity encoded
+
+	$url = str_replace(' ', '%20', $baseUrl.'/'.htmlcleanfilepath($filename));
 
 	return array($img, $img, $title, $contentId++, 'Talk', 'SD', $format, 1500, $url, $synopsis, 'Music', 120);
 }
@@ -57,7 +62,7 @@ $datere = isset($_GET['date']) ? $_GET['date'] : '....-..-..';
 $charre = isset($_GET['char']) ? $_GET['char'] : '.';
 
 $files = file_get_lines('./data/videos.txt');
-$files = array_values(preg_filter('/^'.$datere.','.$charre.'/i', '', $files));
+$files = array_values(preg_filter("/^$datere,(?=$charre)/i", '', $files));
 
 sort($files);
 
