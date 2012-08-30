@@ -8,6 +8,11 @@ error_reporting(E_ALL);
 
 $baseUrl = 'http://www.yourdomain.com/path/to/content';
 
+// this should be the url to the parent directory of this file.
+
+$serverUrl = 'http://www.yourdomain.com/path/to/256mediaplayer-server';
+$webDir = '/duplicate/the/full/path/from/./config';
+
 // realtime video list generation.
 // if you have a lot of video content and update-hq-video.sh
 // causes the categories.php to take a long time to generate

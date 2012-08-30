@@ -23,6 +23,8 @@ Roku device, please follow the instructions below.
    working correctly.
 6) install the 256mediaplayer roku application via
    https://owner.roku.com/add/256bz
+7) images placed into the images directory will be automatically matched
+	against content. imageurl() in library.php explains how matching works
 
 that should be it. now you should be able to watch content from your
 network on your Roku.

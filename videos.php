@@ -31,7 +31,7 @@ function feed_item($filename) {
 	global $baseUrl;
 	global $contentId;
 
-	$img = '';
+	$img = imageurl($filename);
 
 	preg_match('/\.(\w\w\w)$/', $filename, $format);
 
