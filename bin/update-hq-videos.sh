@@ -29,7 +29,7 @@ find "$contentdir/" -type f \
 		# try to get an accurate download date
 		format="%y"
 		filedir=`dirname "$filename"`
-		if [ "$filedir" != "." ] && [ "$filedir" != ".." ] && [ -d "$contentdir/$filedir" ]; then
+		if false && [ "$filedir" != "." ] && [ "$filedir" != ".." ] && [ -d "$contentdir/$filedir" ]; then
 			filepath="$contentdir/$filedir"
 		else
 			filepath="$contentdir/$filename"
