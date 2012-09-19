@@ -20,3 +20,10 @@ $webDir = '/duplicate/the/full/path/from/./config';
 // run from your or httpd users crontab every once in a while
 
 $realtime = true;
+
+// enable the spotify streamer
+// this requires that spotstream and lame are installed
+
+$spotify = false;
+$spotifyUser = 'username';
+$spotifyPass = 'password';

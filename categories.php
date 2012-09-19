@@ -42,11 +42,17 @@ $videoSz = sizeof($videos);
 		echo "<categoryLeaf title='$htmlchar' description='Videos beginning with $htmlchar' feed='$serverUrl/videos.php?char=$urlchar' />\n";
 	}
 ?>
-	</category>images/alphabet.jpg
+	</category>
 
-	<category title="All Playable Videos" description="<?= $videoSz ?> videos found" sd_img="<?= imageurl('all-videos') ?>" hd_img="<?= imageurl('all-videos') ?>">
+	<category title="All Videos" description="<?= $videoSz ?> videos found" sd_img="<?= imageurl('all-videos') ?>" hd_img="<?= imageurl('all-videos') ?>">
 		<categoryLeaf title='All' description='All Videos' feed='<?= $serverUrl ?>/videos.php' />
 	</category>
+
+	<? if($spotify): ?>
+	<category title="Spotify" description="stream your spotify playlists" sd_img="<?= imageurl('spotify') ?>" hd_img="<?= imageurl('spotify') ?>">
+		<categoryLeaf title='Spotify' description='Spotify Playlists' feed='<?= $serverUrl ?>/spotify.php' />
+	</category>
+	<? endif ?>
 
 <? endif ?>
 

@@ -3,8 +3,6 @@
 require_once('./etc/config.php');
 require_once('./lib/library.php');
 
-// TODO: add image from image file if there is one that matches its regex
-
 function feed_item_string($sdimg, $hdimg, $title, $id, $type, $q, $fmt, $br, $url, $synopsis, $genre, $runtime) {
 	return
 		"<item sdImg=\"$sdimg\" hdImg=\"$hdimg\">\n".
