@@ -71,6 +71,7 @@ function stream_playlist($playlistNo, $playlistName) {
 	header("ICY 200 OK");
 	header('Content-Type: audio/mpeg');
 	header('icy-br: 128');
+	header('icy-pub: 0');
 	header('icy-name: '.$playlistName);
 	header('Cache-Control: no-cache');
 	header('Content-Encoding: identity');
