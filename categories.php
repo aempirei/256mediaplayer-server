@@ -4,7 +4,7 @@ require_once('./etc/config.php');
 require_once('./lib/library.php');
 
 if($realtime) {
-	exec("./bin/update-hq-videos.sh", &$buf, &$ret);
+	exec("./bin/update-hq-videos.sh", $buf, $ret);
 } else {
 	$ret = 0;
 }
