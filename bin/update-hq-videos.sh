@@ -20,6 +20,16 @@ types=( mkv m4v mp4 )
 typere=${types[*]}
 typere=${typere// /\\|}
 
+if [ "$1" == "-t" ]; then
+find "$contentdir/" -type f \
+	| sed "s=^$contentdir/\(.*\)=\1=" \
+	| grep "\($typere\)$" \
+	| grep -v '\bsample\.[^.]*$' \
+	| grep -v '/sample-'
+
+exit
+fi
+
 find "$contentdir/" -type f \
 	| sed "s=^$contentdir/\(.*\)=\1=" \
 	| grep "\($typere\)$" \
@@ -39,6 +49,6 @@ find "$contentdir/" -type f \
 done > "$videofile"
 
 cat "$videofile" | cut -f1 -d',' | sort | uniq > "$datefile"
-cat "$videofile" | cut -f2 -d',' | sed 's/\s//g' | tr 'a-z' 'A-Z' | cut -c1 | sort | uniq > "$charsfile"
+cat "$videofile" | cut -f2 -d',' | sed 's/\s//g' | sed -r 's/^the\b\W+//ig' | tr 'a-z' 'A-Z' | cut -c1 | sort | uniq > "$charsfile"
 echo ${types[*]} | tr " " "\n" > "$typefile"
 true

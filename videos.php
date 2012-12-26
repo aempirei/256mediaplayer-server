@@ -60,7 +60,8 @@ $datere = isset($_GET['date']) ? $_GET['date'] : '....-..-..';
 $charre = isset($_GET['char']) ? $_GET['char'] : '.';
 
 $files = file_get_lines('./data/videos.txt');
-$files = array_values(preg_filter("/^$datere,(?=$charre)/i", '', $files));
+#$files = array_values(preg_filter("/^$datere,((?=$charre).*)/i", '\1', $files));
+$files = array_values(preg_filter("/^$datere,((?:the\b\W+)(?=$charre).*)/i", '\1', $files));
 
 sort($files);
 
