@@ -1,4 +1,4 @@
-<?
+<?php
 
 function file_get_lines($filename) {
 	$lines = file_get_contents($filename);

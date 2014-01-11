@@ -1,4 +1,4 @@
-<?
+<?php
 
 require_once('./etc/config.php');
 require_once('./lib/library.php');
