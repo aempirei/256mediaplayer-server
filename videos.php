@@ -82,7 +82,7 @@ echo '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'."\n";
 <feed>
 <resultLength><?= $feedSz ?></resultLength>
 <endIndex><?= $feedSz ?></endIndex>
-<?
+<?php
 
 foreach($feed as $item) {
 	echo call_user_func_array('feed_item_string', $item);
