@@ -18,13 +18,13 @@ $videoSz = sizeof($videos);
 ?>
 <categories>
 
-<? if($ret): ?>
+<?php if($ret): ?>
 	<category title="Error" description="Error genering video list in bin/update-hq-videos.sh : <?= join($buf) ?>" sd_img="" hd_img=""> </category>
 
-<? else: ?>
+<?php else: ?>
 
 	<category title="Videos by Download Date" description="<?= $videoSz ?> videos found" sd_img="<?= imageurl('by-download-date') ?>" hd_img="<?= imageurl('by-download-date') ?>">
-<?
+<?php
 	$dates = file_get_lines('./data/dates.txt');
 	rsort($dates);
 	foreach($dates as $date) {
@@ -34,7 +34,7 @@ $videoSz = sizeof($videos);
 	</category>
 
 	<category title="Videos by First Character" description="<?= $videoSz ?> videos found" sd_img="<?= imageurl('by-1st-char') ?>" hd_img="<?= imageurl('by-1st-char') ?>">
-<?
+<?php
 	$chars = file_get_lines('./data/chars.txt');
 	foreach($chars as $char) {
 		$htmlchar = htmlspecialchars($char);
@@ -48,12 +48,12 @@ $videoSz = sizeof($videos);
 		<categoryLeaf title='All' description='All Videos' feed='<?= $serverUrl ?>/videos.php' />
 	</category>
 
-	<? if($spotify): ?>
+	<?php if($spotify): ?>
 	<category title="Spotify" description="stream your spotify playlists" sd_img="<?= imageurl('spotify') ?>" hd_img="<?= imageurl('spotify') ?>">
 		<categoryLeaf title='Spotify' description='Spotify Playlists' feed='<?= $serverUrl ?>/spotify.php' />
 	</category>
-	<? endif ?>
+	<?php endif ?>
 
-<? endif ?>
+<?php endif ?>
 
  </categories>
